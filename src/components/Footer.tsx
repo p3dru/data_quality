@@ -9,8 +9,7 @@ export default function Footer() {
           target="_blank" 
           rel="noopener noreferrer"
           style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}
-          onMouseEnter={(e) => e.currentTarget.style.color = 'var(--foreground)'}
-          onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+          className="footer-link"
         >
           © p3dru | 2026
         </a>
