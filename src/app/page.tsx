@@ -25,13 +25,41 @@ export default function Home() {
         <h1 className="font-serif" style={{ fontSize: '3.5rem', lineHeight: 1.2, marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--foreground), #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           {t('home.hero.title')}
         </h1>
-        <p style={{ fontSize: '1.25rem', color: '#94a3b8', marginBottom: '3rem' }}>
+        <p style={{ fontSize: '1.25rem', color: '#94a3b8', marginBottom: '2rem' }}>
           {t('home.hero.subtitle')}
         </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '3rem' }}>
           <Link href="/upload" className="btn btn-primary" style={{ fontSize: '1.125rem', padding: '1rem 2rem' }}>
             {t('home.hero.cta')} <ArrowRight size={20} />
           </Link>
+        </div>
+
+        {/* Compact Features */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1rem', borderTop: '1px solid var(--surface-border)', paddingTop: '2.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', textAlign: 'left', maxWidth: '240px' }}>
+             <div style={{ color: 'var(--primary)', marginTop: '2px', flexShrink: 0 }}><Database size={18} /></div>
+             <div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.upload.title')}</h4>
+                <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>{t('home.feat.upload.desc')}</p>
+             </div>
+          </div>
+          
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', textAlign: 'left', maxWidth: '240px' }}>
+             <div style={{ color: 'var(--success)', marginTop: '2px', flexShrink: 0 }}><ShieldCheck size={18} /></div>
+             <div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.quality.title')}</h4>
+                <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>{t('home.feat.quality.desc')}</p>
+             </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', textAlign: 'left', maxWidth: '240px' }}>
+             <div style={{ color: 'var(--warning)', marginTop: '2px', flexShrink: 0 }}><Zap size={18} /></div>
+             <div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.pipeline.title')}</h4>
+                <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>{t('home.feat.pipeline.desc')}</p>
+             </div>
+          </div>
         </div>
       </div>
       
@@ -66,29 +94,7 @@ export default function Home() {
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '4rem' }}>
-        <div className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-lg)' }}>
-          <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-full)', background: 'rgba(99, 102, 241, 0.1)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            <Database size={24} />
-          </div>
-          <h3 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{t('home.feat.upload.title')}</h3>
-          <p style={{ color: '#94a3b8' }}>{t('home.feat.upload.desc')}</p>
-        </div>
-        <div className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-lg)' }}>
-          <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-full)', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            <ShieldCheck size={24} />
-          </div>
-          <h3 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{t('home.feat.quality.title')}</h3>
-          <p style={{ color: '#94a3b8' }}>{t('home.feat.quality.desc')}</p>
-        </div>
-        <div className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-lg)' }}>
-          <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-full)', background: 'rgba(245, 158, 11, 0.1)', color: 'var(--warning)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            <Zap size={24} />
-          </div>
-          <h3 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{t('home.feat.pipeline.title')}</h3>
-          <p style={{ color: '#94a3b8' }}>{t('home.feat.pipeline.desc')}</p>
-        </div>
-      </div>
+
     </div>
   );
 }
