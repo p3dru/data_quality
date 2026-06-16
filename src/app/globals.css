@@ -104,34 +104,14 @@ body {
   pointer-events: none;
   z-index: -1;
   /* Mask out the center to only show on the edges */
-  mask-image: radial-gradient(ellipse at center, transparent 35%, black 90%);
-  -webkit-mask-image: radial-gradient(ellipse at center, transparent 35%, black 90%);
-  opacity: 0.05; /* Light theme subtle */
+  mask-image: linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%);
+  opacity: 0.1; /* Light theme subtle */
 }
 
 .dark-theme .home-parallax-bg {
   opacity: 0.03; /* Dark theme subtle */
   filter: invert(1) hue-rotate(180deg);
-}
-
-/* Floating abstract tech images for Home edges */
-.floating-side-image {
-  position: absolute;
-  top: 10%;
-  width: 450px;
-  height: auto;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-  /* Dark mode: keep original black BG, use screen to make black transparent */
-  mix-blend-mode: screen;
-}
-
-.light-theme .floating-side-image {
-  /* Light mode: invert the image so black becomes white, use multiply to make white transparent */
-  filter: invert(1) contrast(1.2);
-  mix-blend-mode: multiply;
-  opacity: 0.08; /* Slightly more subtle in light mode */
 }
 
 a {
