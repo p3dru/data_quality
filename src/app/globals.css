@@ -31,6 +31,11 @@
 
   /* Set fallback font, variable comes from next/font */
   --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: var(--font-serif), 'Crimson Text', serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
 }
 
 .light-theme {

@@ -35,7 +35,7 @@ function MergeContent() {
           }}>
             <GitMerge size={22} />
           </div>
-          <h2 style={{ fontSize: '2rem', margin: 0 }}>{t('merge.title')}</h2>
+          <h2 className="font-serif" style={{ fontSize: '2rem', margin: 0 }}>{t('merge.title')}</h2>
         </div>
         <p style={{ color: '#94a3b8', maxWidth: '600px' }}>
           {t('merge.subtitle')}

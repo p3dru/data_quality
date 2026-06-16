@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans, Crimson_Text } from 'next/font/google';
 import './globals.css';
 
 import Header from '@/components/Header';
@@ -9,6 +9,13 @@ import { I18nProvider } from '@/core/i18n/I18nContext';
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
+});
+
+const crimsonText = Crimson_Text({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-serif',
   display: 'swap',
 });
 
@@ -27,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={plusJakarta.variable} suppressHydrationWarning>
+    <html lang="en" className={`${plusJakarta.variable} ${crimsonText.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <I18nProvider>
           <ThemeProvider>

@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="container">
       <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', padding: '4rem 0' }}>
-        <h1 style={{ fontSize: '3.5rem', lineHeight: 1.2, marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--foreground), #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <h1 className="font-serif" style={{ fontSize: '3.5rem', lineHeight: 1.2, marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--foreground), #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           {t('home.hero.title')}
         </h1>
         <p style={{ fontSize: '1.25rem', color: '#94a3b8', marginBottom: '3rem' }}>
@@ -66,21 +66,21 @@ export default function Home() {
           <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-full)', background: 'rgba(99, 102, 241, 0.1)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Database size={24} />
           </div>
-          <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>{t('home.feat.upload.title')}</h3>
+          <h3 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{t('home.feat.upload.title')}</h3>
           <p style={{ color: '#94a3b8' }}>{t('home.feat.upload.desc')}</p>
         </div>
         <div className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-lg)' }}>
           <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-full)', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <ShieldCheck size={24} />
           </div>
-          <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>{t('home.feat.quality.title')}</h3>
+          <h3 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{t('home.feat.quality.title')}</h3>
           <p style={{ color: '#94a3b8' }}>{t('home.feat.quality.desc')}</p>
         </div>
         <div className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-lg)' }}>
           <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-full)', background: 'rgba(245, 158, 11, 0.1)', color: 'var(--warning)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Zap size={24} />
           </div>
-          <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>{t('home.feat.pipeline.title')}</h3>
+          <h3 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{t('home.feat.pipeline.title')}</h3>
           <p style={{ color: '#94a3b8' }}>{t('home.feat.pipeline.desc')}</p>
         </div>
       </div>

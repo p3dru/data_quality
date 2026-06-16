@@ -47,7 +47,7 @@ export default function HistoryPage() {
     <div className="container" style={{ padding: '2rem 0' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div>
-          <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{t('history.title')}</h2>
+          <h2 className="font-serif" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{t('history.title')}</h2>
           <p style={{ color: '#94a3b8' }}>{t('history.subtitle')}</p>
         </div>
         <Link href="/upload" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

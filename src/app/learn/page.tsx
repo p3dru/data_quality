@@ -16,7 +16,7 @@ export default function LearnPage() {
         <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '80px', height: '80px', borderRadius: '50%', marginBottom: '2rem', boxShadow: '0 0 40px rgba(99, 102, 241, 0.2)', overflow: 'hidden', border: '2px solid rgba(99,102,241,0.3)' }}>
           <img src="/image.png" alt="DataQ Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
-        <h1 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1.5rem', background: 'linear-gradient(to right, #818cf8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.03em' }}>
+        <h1 className="font-serif" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1.5rem', background: 'linear-gradient(to right, #818cf8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.03em' }}>
           {t('learn.title')}
         </h1>
         <p style={{ fontSize: '1.125rem', color: '#94a3b8', maxWidth: '650px', margin: '0 auto', lineHeight: 1.7 }}>
@@ -70,7 +70,7 @@ export default function LearnPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(99,102,241,0.1)', color: 'var(--primary)' }}>
                 <UploadCloud size={24} />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step1.title')}</h2>
+              <h2 className="font-serif" style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step1.title')}</h2>
             </div>
             <p style={{ color: '#94a3b8', lineHeight: 1.6, fontSize: '1rem' }}>
               {t('learn.step1.desc')}
@@ -85,7 +85,7 @@ export default function LearnPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(16,185,129,0.1)', color: 'var(--success)' }}>
                 <Activity size={24} />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step2.title')}</h2>
+              <h2 className="font-serif" style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step2.title')}</h2>
             </div>
             <p style={{ color: '#94a3b8', marginBottom: '1.5rem', lineHeight: 1.6, fontSize: '1rem' }}>
               {t('learn.step2.desc')}
@@ -106,7 +106,7 @@ export default function LearnPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(139,92,246,0.1)', color: '#8b5cf6' }}>
                 <Layout size={24} />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step3.title')}</h2>
+              <h2 className="font-serif" style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step3.title')}</h2>
             </div>
             <p style={{ color: '#94a3b8', lineHeight: 1.6, fontSize: '1rem' }}>
               {t('learn.step3.desc')}
@@ -121,7 +121,7 @@ export default function LearnPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(245,158,11,0.1)', color: 'var(--warning)' }}>
                 <Save size={24} />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step4.title')}</h2>
+              <h2 className="font-serif" style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step4.title')}</h2>
             </div>
             <p style={{ color: '#94a3b8', lineHeight: 1.6, fontSize: '1rem' }}>
               {t('learn.step4.desc')}
@@ -136,7 +136,7 @@ export default function LearnPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(236,72,153,0.1)', color: '#ec4899' }}>
                 <GitMerge size={24} />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step5.title')}</h2>
+              <h2 className="font-serif" style={{ fontSize: '1.4rem', fontWeight: 700 }}>{t('learn.step5.title')}</h2>
             </div>
             <p style={{ color: '#94a3b8', lineHeight: 1.6, fontSize: '1rem' }}>
               {t('learn.step5.desc')}
