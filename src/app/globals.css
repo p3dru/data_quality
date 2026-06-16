@@ -223,8 +223,17 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
 }
 
+/* Zebra striping for better readability */
+.data-table tbody tr:nth-child(odd) td {
+  background-color: rgba(128, 128, 128, 0.03);
+}
+
+.data-table tbody tr:nth-child(even) td {
+  background-color: transparent;
+}
+
 .data-table tr:hover td {
-  background-color: var(--surface-hover);
+  background-color: var(--surface-hover) !important;
 }
 
 /* Animations */

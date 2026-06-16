@@ -15,6 +15,10 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: 'DataQ - Premium Dataset Diagnosis & ETL',
   description: 'Upload, analyze, and transform your datasets with a visual ETL pipeline.',
+  icons: {
+    icon: '/image.png',
+    apple: '/image.png',
+  },
 };
 
 export default function RootLayout({

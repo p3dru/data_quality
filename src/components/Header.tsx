@@ -36,10 +36,8 @@ export default function Header() {
     <header className="app-header">
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit' }}>
-          <div style={{ width: '32px', height: '32px', background: 'var(--primary)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white' }}>
-            Q
-          </div>
-          <h1 style={{ fontSize: '1.25rem', margin: 0 }}>DataQ</h1>
+          <img src="/image.png" alt="DataQ Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+          <h1 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--foreground)' }}>DataQ</h1>
         </Link>
         <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           <Link href="/" style={navStyle('/')}>{t('nav.dashboard')}</Link>
