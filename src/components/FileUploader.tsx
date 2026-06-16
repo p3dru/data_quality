@@ -5,6 +5,7 @@ import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import { UploadCloud, FileText, AlertCircle } from 'lucide-react';
 import { Dataset, DataRow } from '@/types/dataset';
+import { useI18n } from '@/core/i18n/I18nContext';
 
 interface FileUploaderProps {
   onDatasetLoaded: (dataset: Dataset) => void;
@@ -15,14 +16,15 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { t } = useI18n();
 
   const processFile = async (file: File) => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       const extension = file.name.split('.').pop()?.toLowerCase();
-      
+
       if (extension === 'csv') {
         Papa.parse(file, {
           header: true,
@@ -31,14 +33,14 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
           worker: true,
           complete: (results) => {
             if (results.errors.length > 0 && results.data.length === 0) {
-              setError("Failed to parse CSV file.");
+              setError(t('uploader.error.csv'));
               setIsLoading(false);
               return;
             }
-            
+
             const columns = results.meta.fields || [];
             const rows = results.data as DataRow[];
-            
+
             onDatasetLoaded({
               id: crypto.randomUUID(),
               name: file.name,
@@ -62,14 +64,14 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
             const firstSheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[firstSheetName];
             const jsonData = XLSX.utils.sheet_to_json(worksheet) as DataRow[];
-            
+
             if (jsonData.length === 0) {
-              setError("The Excel file is empty.");
+              setError(t('uploader.error.empty'));
               return;
             }
-            
+
             const columns = Object.keys(jsonData[0]);
-            
+
             onDatasetLoaded({
               id: crypto.randomUUID(),
               name: file.name,
@@ -78,22 +80,22 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
               createdAt: Date.now()
             });
           } catch (err) {
-            setError("Failed to parse Excel file.");
+            setError(t('uploader.error.xlsx'));
           } finally {
             setIsLoading(false);
           }
         };
         reader.onerror = () => {
-          setError("Failed to read file.");
+          setError(t('uploader.error.read'));
           setIsLoading(false);
         };
         reader.readAsArrayBuffer(file);
       } else {
-        setError("Unsupported file format. Please upload a CSV or XLSX file.");
+        setError(t('uploader.error.format'));
         setIsLoading(false);
       }
     } catch (err) {
-      setError("An unexpected error occurred.");
+      setError(t('uploader.error.unexpected'));
       setIsLoading(false);
     }
   };
@@ -101,7 +103,7 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
   const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       const file = e.dataTransfer.files[0];
       processFile(file);
@@ -126,7 +128,7 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
 
   return (
     <div className="uploader-container" style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <div 
+      <div
         style={{
           border: `2px dashed ${isDragging ? 'var(--primary)' : 'var(--surface-border)'}`,
           borderRadius: 'var(--radius-lg)',
@@ -141,26 +143,26 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
         onDragLeave={handleDragLeave}
         onClick={() => fileInputRef.current?.click()}
       >
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          style={{ display: 'none' }} 
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
           accept=".csv, .xlsx, .xls"
           onChange={handleFileInput}
         />
-        
+
         {isLoading ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
             <div style={{ width: '40px', height: '40px', border: '3px solid var(--surface-border)', borderTopColor: 'var(--primary)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-            <p style={{ color: '#94a3b8' }}>Processing dataset...</p>
+            <p style={{ color: '#94a3b8' }}>{t('uploader.processing')}</p>
           </div>
         ) : (
           <>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', color: isDragging ? 'var(--primary)' : '#94a3b8' }}>
               <UploadCloud size={48} />
             </div>
-            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Drag & drop your dataset here</h3>
-            <p style={{ color: '#94a3b8', marginBottom: '1.5rem' }}>or click to browse from your computer</p>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{t('uploader.drag')}</h3>
+            <p style={{ color: '#94a3b8', marginBottom: '1.5rem' }}>{t('uploader.browse')}</p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.05)', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', fontSize: '0.875rem', color: '#cbd5e1' }}>
                 <FileText size={16} /> .CSV
@@ -172,14 +174,14 @@ export default function FileUploader({ onDatasetLoaded }: FileUploaderProps) {
           </>
         )}
       </div>
-      
+
       {error && (
         <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid var(--error)', borderRadius: 'var(--radius-md)', color: 'var(--error)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <AlertCircle size={20} />
           <span>{error}</span>
         </div>
       )}
-      
+
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes spin {
           to { transform: rotate(360deg); }

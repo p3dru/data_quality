@@ -6,18 +6,18 @@ import { db } from '@/core/db';
 import { Dataset } from '@/types/dataset';
 import MergeConfigurator from '@/components/MergeConfigurator';
 import { GitMerge, Loader } from 'lucide-react';
+import { useI18n } from '@/core/i18n/I18nContext';
 
 function MergeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t } = useI18n();
 
-  // Optional: /merge?leftId=xxx  (pre-selects a dataset from the History page)
   const initialLeftId = searchParams.get('leftId') ?? undefined;
 
   const handleMergeComplete = async (result: Dataset) => {
     try {
       await db.datasets.add(result);
-      // Do not redirect, let the configurator show Step 4
     } catch (e) {
       console.error('Failed to save merged dataset:', e);
     }
@@ -35,15 +35,14 @@ function MergeContent() {
           }}>
             <GitMerge size={22} />
           </div>
-          <h2 style={{ fontSize: '2rem', margin: 0 }}>Merge Datasets</h2>
+          <h2 style={{ fontSize: '2rem', margin: 0 }}>{t('merge.title')}</h2>
         </div>
         <p style={{ color: '#94a3b8', maxWidth: '600px' }}>
-          Combine two saved datasets using a SQL-style join. The merged result will be saved
-          to your history and opened in the Analyzer.
+          {t('merge.subtitle')}
         </p>
       </div>
 
-      {/* 3-step wizard */}
+      {/* 4-step wizard */}
       <MergeConfigurator
         onMergeComplete={handleMergeComplete}
         initialLeftId={initialLeftId}

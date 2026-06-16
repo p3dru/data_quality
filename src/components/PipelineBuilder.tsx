@@ -8,6 +8,7 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { CSS } from '@dnd-kit/utilities';
+import { useI18n } from '@/core/i18n/I18nContext';
 
 function SortableItem(props: any) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: props.id });
@@ -21,7 +22,7 @@ function SortableItem(props: any) {
 
   return (
     <div ref={setNodeRef} style={style}>
-      <TransformationBlock 
+      <TransformationBlock
         {...props.blockProps}
         dragHandleProps={{...attributes, ...listeners}}
       />
@@ -42,6 +43,7 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
   const [isAdding, setIsAdding] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
   const [templates, setTemplates] = useState<PipelineTemplate[]>([]);
+  const { t } = useI18n();
 
   // Compute available columns so newly created columns can be selected in subsequent steps
   const availableColumns = [...columns];
@@ -60,7 +62,7 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
   }, [showTemplates]);
 
   const handleSaveTemplate = async () => {
-    const name = await customPrompt("Name this pipeline recipe:");
+    const name = await customPrompt(t('pipeline.builder.prompt.name'));
     if (!name) return;
     const template: PipelineTemplate = {
       id: crypto.randomUUID(),
@@ -69,7 +71,7 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
       createdAt: Date.now()
     };
     await db.pipelineTemplates.add(template);
-    await customAlert('Recipe saved locally!');
+    await customAlert(t('pipeline.builder.saved'));
   };
 
   const handleLoadTemplate = (template: PipelineTemplate) => {
@@ -79,12 +81,12 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
 
   const handleExportTemplate = async () => {
     if (steps.length === 0) {
-      await customAlert("Pipeline is empty.");
+      await customAlert(t('pipeline.builder.emptyExport'));
       return;
     }
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(steps));
     const dlAnchorElem = document.createElement('a');
-    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "pipeline_recipe.json");
     dlAnchorElem.click();
   };
@@ -93,7 +95,7 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'application/json';
-    input.onchange = e => { 
+    input.onchange = e => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
       const reader = new FileReader();
@@ -105,7 +107,7 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
             onChange(parsed);
           }
         } catch (e) {
-          customAlert('Invalid template file.');
+          customAlert(t('pipeline.builder.invalidFile'));
         }
       }
       reader.readAsText(file);
@@ -129,7 +131,7 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
 
   const handleAddStep = (type: TransformationType) => {
     const newStep: any = { id: crypto.randomUUID(), type };
-    
+
     if (type === 'REMOVE_NULLS' || type === 'REMOVE_COLUMN' || type === 'CONVERT_TYPE' || type === 'NORMALIZE_TEXT') {
       newStep.column = columns[0] || '';
     }
@@ -186,20 +188,11 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
     onChange(steps.filter(s => s.id !== id));
   };
 
-  const availableTypes: { type: TransformationType, label: string, description: string }[] = [
-    { type: 'REMOVE_DUPLICATES', label: 'Remove Duplicates', description: 'Deletes identical rows based on selected columns.' },
-    { type: 'REMOVE_NULLS', label: 'Drop Nulls', description: 'Removes any row that contains empty/null values in the chosen column.' },
-    { type: 'FILL_NULLS', label: 'Fill Nulls', description: 'Replaces empty/null values with a default text or number.' },
-    { type: 'RENAME_COLUMN', label: 'Rename Column', description: 'Changes the title of an existing column.' },
-    { type: 'REMOVE_COLUMN', label: 'Drop Column', description: 'Deletes an entire column from the dataset.' },
-    { type: 'CONVERT_TYPE', label: 'Convert Type', description: 'Changes the data format (e.g. Text to Number or Date).' },
-    { type: 'NORMALIZE_TEXT', label: 'Normalize Text', description: 'Standardizes text (UPPERCASE, lowercase, Trim spaces).' },
-    { type: 'FILTER_ROWS', label: 'Filter Rows', description: 'Keeps or removes rows that match a specific condition.' },
-    { type: 'SORT_DATA', label: 'Sort Data', description: 'Orders rows alphabetically or numerically (A-Z, Z-A).' },
-    { type: 'CALCULATED_COLUMN', label: 'Calculated Column', description: 'Creates a new column using math formulas (e.g. Qtd * Price).' },
-    { type: 'MASK_DATA', label: 'Mask Data (LGPD)', description: 'Anonymizes sensitive info like Emails or Documents.' },
-    { type: 'GROUP_BY', label: 'Group By / Pivot', description: 'Groups rows and calculates sums, averages, or counts.' },
-    { type: 'FUZZY_DEDUPLICATE', label: 'Fuzzy Deduplicate', description: 'Finds and merges similar texts with typos (e.g. "Jonh" and "John").' }
+  // Build availableTypes dynamically from translations
+  const transformationTypes: TransformationType[] = [
+    'REMOVE_DUPLICATES', 'REMOVE_NULLS', 'FILL_NULLS', 'RENAME_COLUMN',
+    'REMOVE_COLUMN', 'CONVERT_TYPE', 'NORMALIZE_TEXT', 'FILTER_ROWS',
+    'SORT_DATA', 'CALCULATED_COLUMN', 'MASK_DATA', 'GROUP_BY', 'FUZZY_DEDUPLICATE'
   ];
 
   return (
@@ -207,41 +200,41 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
       <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--surface-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <GitMerge className="text-primary" />
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Pipeline Builder</h3>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>{t('pipeline.builder.title')}</h3>
         </div>
         <button onClick={() => setShowTemplates(!showTemplates)} className="btn btn-secondary" style={{ padding: '0.25rem 0.75rem', fontSize: '0.875rem' }}>
-          {showTemplates ? 'Close Recipes' : 'Recipes'}
+          {showTemplates ? t('pipeline.builder.closeRecipes') : t('pipeline.builder.recipes')}
         </button>
       </div>
 
       {showTemplates && (
         <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--surface-border)', background: 'rgba(255,255,255,0.02)' }}>
           <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-            <button onClick={handleSaveTemplate} className="btn btn-primary" style={{ padding: '0.5rem', fontSize: '0.75rem', flex: 1, display: 'flex', justifyContent: 'center', gap: '0.25rem' }}><Save size={14}/> Save Current</button>
-            <button onClick={handleExportTemplate} className="btn btn-secondary" style={{ padding: '0.5rem', fontSize: '0.75rem', flex: 1, display: 'flex', justifyContent: 'center', gap: '0.25rem' }}><Download size={14}/> Export</button>
-            <button onClick={handleImportTemplate} className="btn btn-secondary" style={{ padding: '0.5rem', fontSize: '0.75rem', flex: 1, display: 'flex', justifyContent: 'center', gap: '0.25rem' }}><Upload size={14}/> Import</button>
+            <button onClick={handleSaveTemplate} className="btn btn-primary" style={{ padding: '0.5rem', fontSize: '0.75rem', flex: 1, display: 'flex', justifyContent: 'center', gap: '0.25rem' }}><Save size={14}/> {t('pipeline.builder.saveCurrent')}</button>
+            <button onClick={handleExportTemplate} className="btn btn-secondary" style={{ padding: '0.5rem', fontSize: '0.75rem', flex: 1, display: 'flex', justifyContent: 'center', gap: '0.25rem' }}><Download size={14}/> {t('pipeline.builder.export')}</button>
+            <button onClick={handleImportTemplate} className="btn btn-secondary" style={{ padding: '0.5rem', fontSize: '0.75rem', flex: 1, display: 'flex', justifyContent: 'center', gap: '0.25rem' }}><Upload size={14}/> {t('pipeline.builder.import')}</button>
           </div>
           {templates.length > 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Saved Local Recipes:</span>
-              {templates.map(t => (
-                <button key={t.id} onClick={() => handleLoadTemplate(t)} style={{ textAlign: 'left', padding: '0.5rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--surface-border)', borderRadius: '4px', cursor: 'pointer', color: 'white' }}>
-                  <div style={{ fontSize: '0.875rem', fontWeight: 500 }}>{t.name}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{t.steps.length} steps</div>
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{t('pipeline.builder.savedRecipes')}</span>
+              {templates.map(tmpl => (
+                <button key={tmpl.id} onClick={() => handleLoadTemplate(tmpl)} style={{ textAlign: 'left', padding: '0.5rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--surface-border)', borderRadius: '4px', cursor: 'pointer', color: 'inherit' }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 500 }}>{tmpl.name}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{tmpl.steps.length} {t('pipeline.builder.steps')}</div>
                 </button>
               ))}
             </div>
           ) : (
-            <p style={{ fontSize: '0.75rem', color: '#94a3b8', margin: 0 }}>No saved recipes found.</p>
+            <p style={{ fontSize: '0.75rem', color: '#94a3b8', margin: 0 }}>{t('pipeline.builder.noRecipes')}</p>
           )}
         </div>
       )}
-      
+
       <div style={{ padding: '1.5rem', flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {steps.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
-            <p>Your pipeline is empty.</p>
-            <p style={{ fontSize: '0.875rem' }}>Add a step below to start transforming data.</p>
+            <p>{t('pipeline.builder.empty')}</p>
+            <p style={{ fontSize: '0.875rem' }}>{t('pipeline.builder.emptyHint')}</p>
           </div>
         ) : (
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} modifiers={[restrictToVerticalAxis]}>
@@ -266,36 +259,36 @@ export default function PipelineBuilder({ steps, onChange, columns }: PipelineBu
         <div style={{ marginTop: '1rem', position: 'relative' }}>
           {isAdding ? (
             <div style={{ background: 'var(--surface)', border: '1px solid var(--surface-border)', borderRadius: 'var(--radius-md)', padding: '1rem' }}>
-              <h4 style={{ fontSize: '0.875rem', color: '#94a3b8', marginBottom: '0.75rem' }}>Select Transformation</h4>
+              <h4 style={{ fontSize: '0.875rem', color: '#94a3b8', marginBottom: '0.75rem' }}>{t('pipeline.builder.selectTransform')}</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {availableTypes.map(t => (
-                  <button 
-                    key={t.type} 
-                    onClick={() => handleAddStep(t.type)}
-                    title={t.description}
+                {transformationTypes.map(type => (
+                  <button
+                    key={type}
+                    onClick={() => handleAddStep(type)}
+                    title={t(`transform.${type}.desc`)}
                     style={{ textAlign: 'left', padding: '0.5rem 0.75rem', borderRadius: '4px', background: 'rgba(255,255,255,0.02)', fontSize: '0.875rem', transition: 'background 0.2s', border: 'none', color: 'inherit', cursor: 'pointer' }}
                     onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
                     onMouseOut={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
                   >
-                    {t.label}
+                    {t(`transform.${type}.label`)}
                   </button>
                 ))}
               </div>
-              <button 
-                onClick={() => setIsAdding(false)} 
+              <button
+                onClick={() => setIsAdding(false)}
                 style={{ width: '100%', marginTop: '0.75rem', padding: '0.5rem', color: '#94a3b8', fontSize: '0.875rem', border: 'none', background: 'transparent', cursor: 'pointer' }}
               >
-                Cancel
+                {t('pipeline.builder.cancel')}
               </button>
             </div>
           ) : (
-            <button 
+            <button
               onClick={() => setIsAdding(true)}
               style={{ width: '100%', padding: '1rem', border: '2px dashed var(--surface-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: '#94a3b8', transition: 'all 0.2s', background: 'transparent', cursor: 'pointer' }}
               onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
               onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--surface-border)'; e.currentTarget.style.color = '#94a3b8'; }}
             >
-              <Plus size={18} /> Add Step
+              <Plus size={18} /> {t('pipeline.builder.addStep')}
             </button>
           )}
         </div>
