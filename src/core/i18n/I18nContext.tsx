@@ -18,6 +18,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.upload': 'Upload',
     'nav.history': 'History',
     'nav.merge': '⋈ Merge',
+    'nav.wipeCache': 'Wipe Cache',
 
     // HOME
     'home.hero.title': 'Intelligent Dataset Diagnosis & ETL',
@@ -220,6 +221,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.upload': 'Enviar',
     'nav.history': 'Histórico',
     'nav.merge': '⋈ Mesclar',
+    'nav.wipeCache': 'Limpar Cache',
 
     // HOME
     'home.hero.title': 'Diagnóstico e ETL Inteligente de Datasets',
@@ -422,6 +424,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.upload': 'Subir',
     'nav.history': 'Historial',
     'nav.merge': '⋈ Combinar',
+    'nav.wipeCache': 'Borrar Caché',
 
     // HOME
     'home.hero.title': 'Diagnóstico y ETL Inteligente de Conjuntos de Datos',

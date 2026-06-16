@@ -98,7 +98,7 @@ export default function Header() {
               fontSize: '0.875rem'
             }}
           >
-            <ShieldAlert size={14} /> Wipe Cache
+            <ShieldAlert size={14} /> {t('nav.wipeCache')}
           </button>
           </div>
         </nav>
