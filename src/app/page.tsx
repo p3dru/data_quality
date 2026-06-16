@@ -42,24 +42,24 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', textAlign: 'left', maxWidth: '240px' }}>
              <div style={{ color: 'var(--primary)', marginTop: '2px', flexShrink: 0 }}><Database size={18} /></div>
              <div>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.upload.title')}</h4>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>{t('home.feat.upload.desc')}</p>
+                <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.upload.title')}</h4>
+                <p style={{ fontSize: '0.9rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>{t('home.feat.upload.desc')}</p>
              </div>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', textAlign: 'left', maxWidth: '240px' }}>
              <div style={{ color: 'var(--success)', marginTop: '2px', flexShrink: 0 }}><ShieldCheck size={18} /></div>
              <div>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.quality.title')}</h4>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>{t('home.feat.quality.desc')}</p>
+                <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.quality.title')}</h4>
+                <p style={{ fontSize: '0.9rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>{t('home.feat.quality.desc')}</p>
              </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', textAlign: 'left', maxWidth: '240px' }}>
              <div style={{ color: 'var(--warning)', marginTop: '2px', flexShrink: 0 }}><Zap size={18} /></div>
              <div>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.pipeline.title')}</h4>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>{t('home.feat.pipeline.desc')}</p>
+                <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--foreground)', marginBottom: '0.25rem' }}>{t('home.feat.pipeline.title')}</h4>
+                <p style={{ fontSize: '0.9rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>{t('home.feat.pipeline.desc')}</p>
              </div>
           </div>
         </div>
