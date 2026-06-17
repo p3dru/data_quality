@@ -29,6 +29,20 @@ const translations: Record<Language, Record<string, string>> = {
     'home.recent.rows': 'rows',
     'home.recent.analyze': 'Analyze',
     'home.recent.pipeline': 'Pipeline',
+
+    // QUICK GUIDE
+    'learn.step1.title': '1. Upload Data',
+    'learn.step1.desc': 'Drop your CSV or Excel file safely. The data never leaves your browser.',
+    'learn.step2.title': '2. Automatic Diagnostics',
+    'learn.step2.desc': 'Our engine scans the dataset immediately, finding nulls, duplicates, and mixed types.',
+    'learn.step2.tip': 'You will receive a quality score from 0 to 100 based on the health of your dataset.',
+    'learn.step3.title': '3. Visual Pipeline',
+    'learn.step3.desc': 'Build a transformation flow without writing code. Filter, fill nulls, and clean text dynamically.',
+    'learn.step4.title': '4. Save & Replay',
+    'learn.step4.desc': 'Save your pipeline recipe to apply the exact same cleaning steps to future datasets automatically.',
+    'learn.step5.title': '5. Merge & Export',
+    'learn.step5.desc': 'Combine different cleaned datasets using visual joins, then export the pristine data as CSV or Excel.',
+
     'home.feat.upload.title': 'Universal Upload',
     'home.feat.upload.desc': 'Supports local parsing for CSV and XLSX files, ensuring your data never leaves your browser until you choose to export.',
     'home.feat.quality.title': 'Quality Scoring',
@@ -329,6 +343,20 @@ const translations: Record<Language, Record<string, string>> = {
     'home.recent.rows': 'linhas',
     'home.recent.analyze': 'Analisar',
     'home.recent.pipeline': 'Pipeline',
+
+    // QUICK GUIDE
+    'learn.step1.title': '1. Upload Local',
+    'learn.step1.desc': 'Arraste seu arquivo CSV ou Excel com segurança. Os dados nunca saem do seu navegador.',
+    'learn.step2.title': '2. Diagnóstico Automático',
+    'learn.step2.desc': 'Nosso motor escaneia o dataset imediatamente, encontrando nulos, duplicatas e tipos mistos.',
+    'learn.step2.tip': 'Você receberá um score de qualidade de 0 a 100 baseado na saúde dos seus dados.',
+    'learn.step3.title': '3. Pipeline Visual',
+    'learn.step3.desc': 'Monte um fluxo de transformação sem escrever código. Filtre, preencha nulos e limpe texto dinamicamente.',
+    'learn.step4.title': '4. Salvar & Repetir',
+    'learn.step4.desc': 'Salve a receita do seu pipeline para aplicar exatamente as mesmas etapas de limpeza em datasets futuros.',
+    'learn.step5.title': '5. Combinar & Exportar',
+    'learn.step5.desc': 'Junte datasets diferentes (merge) que já foram limpos e exporte o resultado impecável em CSV ou Excel.',
+
     'home.feat.upload.title': 'Upload Universal',
     'home.feat.upload.desc': 'Suporte para análise local de CSV e XLSX, garantindo que seus dados nunca saiam do seu navegador até você escolher exportar.',
     'home.feat.quality.title': 'Score de Qualidade',
@@ -629,6 +657,20 @@ const translations: Record<Language, Record<string, string>> = {
     'home.recent.rows': 'filas',
     'home.recent.analyze': 'Analizar',
     'home.recent.pipeline': 'Pipeline',
+
+    // QUICK GUIDE
+    'learn.step1.title': '1. Carga Local',
+    'learn.step1.desc': 'Arrastre su archivo CSV o Excel de forma segura. Los datos nunca salen de su navegador.',
+    'learn.step2.title': '2. Diagnóstico Automático',
+    'learn.step2.desc': 'Nuestro motor escanea el dataset inmediatamente, encontrando nulos, duplicados y tipos mixtos.',
+    'learn.step2.tip': 'Recibirá una puntuación de calidad de 0 a 100 basada en la salud de su dataset.',
+    'learn.step3.title': '3. Pipeline Visual',
+    'learn.step3.desc': 'Construya un flujo de transformación sin escribir código. Filtre, llene nulos y limpie texto dinámicamente.',
+    'learn.step4.title': '4. Guardar & Repetir',
+    'learn.step4.desc': 'Guarde la receta de su pipeline para aplicar exactamente los mismos pasos de limpieza a futuros datasets.',
+    'learn.step5.title': '5. Combinar & Exportar',
+    'learn.step5.desc': 'Combine diferentes datasets limpios usando uniones visuales y luego exporte los datos impecables en CSV o Excel.',
+
     'home.feat.upload.title': 'Carga Universal',
     'home.feat.upload.desc': 'Admite análisis local de archivos CSV y XLSX, asegurando que sus datos nunca salgan del navegador hasta que decida exportarlos.',
     'home.feat.quality.title': 'Puntuación de Calidad',
