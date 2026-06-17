@@ -37,7 +37,7 @@ export default function Roadmap() {
   return (
     <div ref={containerRef} style={{ marginTop: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2 className="font-serif" style={{ fontSize: '2rem', marginBottom: '3rem', ...transitionStyle(0) }}>
-        Guia Rápido
+        {t('learn.quickGuide.title')}
       </h2>
       
       {/* The 2-Column S-Curve Layout */}

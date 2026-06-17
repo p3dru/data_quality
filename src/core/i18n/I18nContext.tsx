@@ -33,6 +33,7 @@ const translations: Record<Language, Record<string, string>> = {
     'home.recent.pipeline': 'Pipeline',
 
     // QUICK GUIDE
+    'learn.quickGuide.title': 'Quick Guide',
     'learn.step1.title': '1. Upload Data',
     'learn.step1.desc': 'Drop your CSV or Excel file safely. The data never leaves your browser.',
     'learn.step2.title': '2. Automatic Diagnostics',
@@ -360,6 +361,7 @@ const translations: Record<Language, Record<string, string>> = {
     'home.recent.pipeline': 'Pipeline',
 
     // QUICK GUIDE
+    'learn.quickGuide.title': 'Guia Rápido',
     'learn.step1.title': '1. Upload Local',
     'learn.step1.desc': 'Arraste seu arquivo CSV ou Excel com segurança. Os dados nunca saem do seu navegador.',
     'learn.step2.title': '2. Diagnóstico Automático',
@@ -687,6 +689,7 @@ const translations: Record<Language, Record<string, string>> = {
     'home.recent.pipeline': 'Pipeline',
 
     // QUICK GUIDE
+    'learn.quickGuide.title': 'Guía Rápida',
     'learn.step1.title': '1. Carga Local',
     'learn.step1.desc': 'Arrastre su archivo CSV o Excel de forma segura. Los datos nunca salen de su navegador.',
     'learn.step2.title': '2. Diagnóstico Automático',

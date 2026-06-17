@@ -69,6 +69,12 @@ export default function LearnWikiPage() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Check if we hit the bottom of the page
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        setActiveSection(sections[sections.length - 1].id);
+        return;
+      }
+      
       for (const s of [...sections].reverse()) {
         const el = document.getElementById(s.id);
         if (el && el.getBoundingClientRect().top <= 140) {
