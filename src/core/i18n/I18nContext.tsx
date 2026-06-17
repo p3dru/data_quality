@@ -19,6 +19,8 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.history': 'History',
     'nav.merge': '⋈ Merge',
     'nav.wipeCache': 'Wipe Cache',
+    'nav.wipe.confirm': '🔐 WARNING: This will physically DESTROY all datasets, settings, and cached data from your browser. It is unrecoverable. Do you wish to proceed?',
+    'nav.wipe.success': 'Data securely purged. Reloading application.',
 
     // HOME
     'home.hero.title': 'Intelligent Dataset Diagnosis & ETL',
@@ -344,6 +346,8 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.history': 'Histórico',
     'nav.merge': '⋈ Mesclar',
     'nav.wipeCache': 'Limpar Cache',
+    'nav.wipe.confirm': '🔐 ATENÇÃO: Isso irá DESTRUIR fisicamente do seu navegador todos os datasets, configurações e dados cacheados. É irrecuperável. Deseja prosseguir?',
+    'nav.wipe.success': 'Dados expurgados com segurança. Recarregando a aplicação.',
 
     // HOME
     'home.hero.title': 'Diagnóstico e ETL Inteligente de Datasets',
@@ -669,6 +673,8 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.history': 'Historial',
     'nav.merge': '⋈ Combinar',
     'nav.wipeCache': 'Borrar Caché',
+    'nav.wipe.confirm': '🔐 ATENCIÓN: Esto DESTRUIRÁ físicamente todos los conjuntos de datos, configuraciones y datos almacenados en caché de su navegador. Es irrecuperable. ¿Desea continuar?',
+    'nav.wipe.success': 'Datos purgados de forma segura. Recargando la aplicación.',
 
     // HOME
     'home.hero.title': 'Diagnóstico y ETL Inteligente de Conjuntos de Datos',

@@ -24,10 +24,10 @@ export default function Header() {
 
   const router = useRouter();
   const handleSecureWipe = async () => {
-    const isConfirmed = await customConfirm('🔐 ATENÇÃO: Isso irá DESTRUIR fisicamente do seu navegador todos os datasets, configurações e dados cacheados. É irrecuperável. Deseja prosseguir para proteger os dados?', true);
+    const isConfirmed = await customConfirm(t('nav.wipe.confirm'), true);
     if (isConfirmed) {
       await db.delete(); // Deletes the entire IndexedDB database
-      await customAlert('Dados expurgados com segurança. Recarregando a aplicação.');
+      await customAlert(t('nav.wipe.success'));
       window.location.href = '/';
     }
   };
